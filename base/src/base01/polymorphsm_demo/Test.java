@@ -1,4 +1,4 @@
-package base01.polymorphsmDemo;
+package base01.polymorphsm_demo;
 
 import java.util.Scanner;
 

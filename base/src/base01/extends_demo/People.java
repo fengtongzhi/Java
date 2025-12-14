@@ -1,4 +1,4 @@
-package base01.extendsDemo;
+package base01.extends_demo;
 
 public class People {
     private String name;

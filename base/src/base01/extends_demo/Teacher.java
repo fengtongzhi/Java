@@ -1,4 +1,4 @@
-package base01.extendsDemo;
+package base01.extends_demo;
 
 public class Teacher extends People {
     private String skill;

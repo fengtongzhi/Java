@@ -1,4 +1,4 @@
-package base01.extendsDemo;
+package base01.extends_demo;
 
 public class Consultant {
     private int num;

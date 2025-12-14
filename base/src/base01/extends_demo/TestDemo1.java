@@ -1,4 +1,4 @@
-package base01.extendsDemo;
+package base01.extends_demo;
 
 public class TestDemo1 {
     public static void main(String[] args) {
