@@ -1,15 +1,27 @@
 package ui;
 
+import bean.Employee;
+import bean.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class LoginFrame extends JFrame {
+public class LoginFrame extends JFrame{
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registerButton;
+
+    private static ArrayList<User> allUser = new ArrayList<>();
+
+    static{
+        allUser.add(new User("管理员","admin","admin"));
+        allUser.add(new User("张三","123456","zhangsan"));
+        allUser.add(new User("李四","123456","lisi"));
+    }
 
     public LoginFrame() {
         // 设置窗口标题
@@ -85,7 +97,7 @@ public class LoginFrame extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField. getText();
+                String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
 
                 if (username.isEmpty() || password.isEmpty()) {
@@ -94,11 +106,28 @@ public class LoginFrame extends JFrame {
                         "提示",
                         JOptionPane.WARNING_MESSAGE);
                 } else {
-                    // 这里添加登录逻辑
-                    JOptionPane.showMessageDialog(LoginFrame.this,
-                        "登录功能待实现\n用户名: " + username,
-                        "登录",
-                        JOptionPane. INFORMATION_MESSAGE);
+                    // 遍历登录用户列表，验证用户名和密码是否正确，如果正确，跳转到用户管理界面
+                    boolean found = false;
+                    for (User user : allUser) {
+                        if (user.getLoginName().equals(username) && user.getPassword().equals(password)) {
+                            found = true;
+                            JOptionPane.showMessageDialog(LoginFrame.this,
+                                "登录成功！\n欢迎，" + user.getLoginName(),
+                                "登录",
+                                JOptionPane.INFORMATION_MESSAGE);
+                            // 关闭登录界面
+                            dispose();
+                            // 打开员工管理界面
+                            new HRManagementSystem(username);
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        JOptionPane.showMessageDialog(LoginFrame.this,
+                            "用户名或密码错误！",
+                            "提示",
+                            JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -107,10 +136,36 @@ public class LoginFrame extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(LoginFrame.this,
-                    "注册功能待实现",
-                    "注册",
-                    JOptionPane.INFORMATION_MESSAGE);
+                //点击注册按钮后弹出提示框，提示注册成功，事件发生时获取输入框的LoginName和password并且将他们添加到allUser中，username可以默认设置为LoginName
+                String username = usernameField.getText();
+                String password = new String(passwordField.getPassword());
+                if (username.isEmpty() || password.isEmpty()) {
+                    JOptionPane.showMessageDialog(LoginFrame.this,
+                        "用户名或密码不能为空！",
+                        "提示",
+                        JOptionPane.WARNING_MESSAGE);
+                } else {
+                    //检查用户名是否已经存在
+                    boolean exists = false;
+                    for (User user : allUser) {
+                        if (user.getLoginName().equals(username)) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (exists) {
+                        JOptionPane.showMessageDialog(LoginFrame.this,
+                            "用户名已存在！",
+                            "提示",
+                            JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        allUser.add(new User(username, password, username));
+                        JOptionPane.showMessageDialog(LoginFrame.this,
+                            "注册成功！\n请使用新账号登录。",
+                            "注册",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
             }
         });
 

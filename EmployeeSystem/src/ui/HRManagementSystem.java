@@ -15,9 +15,9 @@ public class HRManagementSystem extends JFrame {
     private JButton addButton;
     private JPopupMenu rightClickMenu;
 
-    public HRManagementSystem() {
+    public HRManagementSystem(String username) {
         // 设置窗口标题
-        setTitle("人事管理系统");
+        setTitle("欢迎"+username+"使用人事管理系统");
 
         // 设置窗口大小
         setSize(1400, 800);
@@ -426,9 +426,5 @@ public class HRManagementSystem extends JFrame {
                 "成功",
                 JOptionPane.INFORMATION_MESSAGE);
         }
-    }
-
-    public static void main(String[] args) {
-        new HRManagementSystem();
     }
 }
