@@ -1,4 +1,4 @@
-package advanced.movieDemo;
+package advanced.movie_demo;
 
 import java.util.ArrayList;
 import java.util.List;

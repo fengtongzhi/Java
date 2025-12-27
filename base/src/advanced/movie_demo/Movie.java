@@ -1,4 +1,4 @@
-package advanced.movieDemo;
+package advanced.movie_demo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
