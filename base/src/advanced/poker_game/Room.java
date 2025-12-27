@@ -9,11 +9,11 @@ public class Room {
     //实例代码块，初始化牌类
     {
         String[] colors = {"红桃", "黑桃", "方片", "梅花"};
-        String[] sizes = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+        String[] sizes = { "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A","2"};
         int num=0;
-        for (String color : colors) {
+        for (String size : sizes) {
             num++;
-            for (String size : sizes) {
+            for (String color : colors) {
                 cards.add(new Card(size, color,num));
             }
         }
