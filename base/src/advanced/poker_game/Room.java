@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Room {
 
-    private List<Card> cards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
 
     //实例代码块，初始化牌类
     {
