@@ -21,5 +21,7 @@ public class InputFileStreamDemo {
             String string = new String(buffer,0,len);
             System.out.print(string);
         }
+
+        is.close();
     }
 }
